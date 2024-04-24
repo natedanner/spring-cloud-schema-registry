@@ -66,7 +66,7 @@ public class AvroSchemaServiceManagerTests {
 		File file = new File("foodorder.avro");
 
 		DatumWriter datumWriter = defaultServiceManager.getDatumWriter(foodOrder.getClass(), schema);
-		DataFileWriter<FoodOrder> dataFileWriter = new DataFileWriter<FoodOrder>(datumWriter);
+		DataFileWriter<FoodOrder> dataFileWriter = new DataFileWriter<>(datumWriter);
 		dataFileWriter.create(schema, file);
 		dataFileWriter.append(foodOrder);
 
@@ -75,7 +75,7 @@ public class AvroSchemaServiceManagerTests {
 		dataFileWriter.close();
 
 		DatumReader userDatumReader = defaultServiceManager.getDatumReader(foodOrder.getClass(), schema, schema);
-		DataFileReader<FoodOrder> dataFileReader = new DataFileReader<FoodOrder>(file, userDatumReader);
+		DataFileReader<FoodOrder> dataFileReader = new DataFileReader<>(file, userDatumReader);
 		FoodOrder foodOrderDeserialized = null;
 		while (dataFileReader.hasNext()) {
 			// Reuse user object by passing it to next(). This saves us from

@@ -206,7 +206,7 @@ public class AvroSchemaRegistryClientMessageConverterTests {
 
 	@Test
 	public void testNoCacheConfiguration() {
-		if (propertyPrefix.equalsIgnoreCase("spring.cloud")) {
+		if ("spring.cloud".equalsIgnoreCase(propertyPrefix)) {
 			ConfigurableApplicationContext sourceContext = SpringApplication
 					.run(NoCacheConfiguration.class, "--spring.main.web-environment=false");
 			AvroSchemaRegistryClientMessageConverter converter = sourceContext
